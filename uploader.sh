@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # -----------------------------------------------------
-# 名称：KindleEar安装脚本
-# 作者：bookfere.com
-# 页面：https://bookfere.com/post/19.html
-# 更新：2020.04.24
+# KindleEar uploader
+# Source: bookfere.com
 # -----------------------------------------------------
 
 r_color="\033[1;91m"
@@ -43,16 +41,16 @@ parameters=(
     # more...
 )
 descriptions=(
-    "是否将图片转换为灰度？"
-    "是否为目录生成缩略图？"
-    "是否为目录添加摘要？"
-    "是否生成HTML格式目录？"
-    "是否将中文名转为拼音？"
+    "Do you want to convert the picture to grayscale?"
+    "Do you want to generate thumbnails for the catalog?"
+    "Do you want to add a summary for the catalog?"
+    "Do you want to generate an HTML format catalog?"
+    "Should the Chinese name be converted to Pinyin?"
     # more...
 )
 interrupt() {
     echo -e $1$divid_2
-    echo -e "${r_color}已中止上传"
+    echo -e "${r_color}Upload aborted"
     echo -e $divid_1
     exit 0
 }
@@ -63,7 +61,7 @@ trap "interrupt \"\n\"" SIGINT
 echo -e $divid_1
 echo "Ready to upload KindleEar source code"
 echo -e $divid_1
-echo -e "${w_color}来源: $source_url${e_color}"
+echo -e "${w_color}Source: $source_url${e_color}"
 echo -e $divid_2
 
 get_version() {
@@ -135,7 +133,7 @@ fi
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo -e $divid_2
     while true; do
-        read -r -p "Please enter Gmail address" email
+        read -r -p "Please enter Gmail address:" email
         if [ -n "$email" ]; then
             break
         fi
